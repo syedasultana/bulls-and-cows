@@ -52,7 +52,6 @@ function CompareGuess(solution, guess) {
     if (solutionArrayed.includes(guessArrayed[x])) {
       if (guessArrayed[x] == solutionArrayed[x]) {
         bulls = bulls + 1;
-        cows = cows + 1;
       } else {
         cows = cows + 1;
       }
