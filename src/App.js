@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <h3>{fourDigitNumber}</h3>
-    
+
       <input
         onChange={event => setTypedInput(event.target.value)}
         placeholder="guess 4 digit number"
@@ -20,14 +20,14 @@ function App() {
       <button onClick={() => {
         setGuess(typedInput);
         //console.log(typedInput);
-        let comparisonResult = CompareGuess(fourDigitNumber, typedInput);
-        setResult(comparisonResult);
+        let checkIfGuessValid = IsValidGuess(typedInput)
+        setResult(CompareGuess(fourDigitNumber, typedInput));
       }}>Submit</button>
 
       <h3>{result}</h3>
 
-      
-     
+
+
     </div>
   );
 }
@@ -55,14 +55,18 @@ function CompareGuess(solution, guess) {
       } else {
         cows = cows + 1;
       }
-    } 
+    }
   }
   // console.log('cows: ' + cows);
   // console.log('bulls: ' + bulls);
-  
+
     return `${bulls} bulls and ${cows} cows`;
-  
-  
+
+
+}
+
+function IsValidGuess(userInput) {
+
 }
 
 export default App;
