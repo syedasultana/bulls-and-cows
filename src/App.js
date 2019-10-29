@@ -8,11 +8,12 @@ function App() {
   const [guess, setGuess] = React.useState();
   const [typedInput, setTypedInput] = React.useState('');
   const [result, setResult] = React.useState('');
+  const [warnMessage, setWarnMessage] = React.useState('')
 
   return (
     <div className="App">
       <h3>{fourDigitNumber}</h3>
-    
+
       <input
         onChange={event => setTypedInput(event.target.value)}
         placeholder="guess 4 digit number"
@@ -20,14 +21,14 @@ function App() {
       <button onClick={() => {
         setGuess(typedInput);
         //console.log(typedInput);
-        let comparisonResult = CompareGuess(fourDigitNumber, typedInput);
-        setResult(comparisonResult);
+        setWarnMessage(CheckForValidGuess(typedInput));
+        setResult(CompareGuess(fourDigitNumber, typedInput));
       }}>Submit</button>
 
       <h3>{result}</h3>
+      <p>{warnMessage}</p>
 
-      
-     
+
     </div>
   );
 }
@@ -55,14 +56,33 @@ function CompareGuess(solution, guess) {
       } else {
         cows = cows + 1;
       }
-    } 
+    }
   }
   // console.log('cows: ' + cows);
   // console.log('bulls: ' + bulls);
-  
+
     return `${bulls} bulls and ${cows} cows`;
-  
-  
+
+
 }
+
+function CheckForValidGuess(userInput) {
+  let digits = /[0-9]/g //regex allows match function to look for 0-9 characters globally
+  let message
+  console.log(userInput.match(digits))
+  if(userInput.length != 4){
+    message = 'Make sure that your guess is 4 digits long'
+  } else if ((userInput.match(digits) == null) || (userInput.match(digits).length != userInput.length)){
+
+    //if the number of characters thats are digits in userInput  is not equal to the original string length, there are characters that are not digits
+    message = 'Make sure that your guess uses numbers 0-9 only'
+
+  } else {
+    message = ''
+  }
+
+  return message
+}
+
 
 export default App;
