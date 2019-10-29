@@ -1,13 +1,14 @@
 import React from 'react';
+import Result from '././Result';
 
 function InputGuess({ 
     setWarnMessage,
-    setResult,
     fourDigitNumber
 }){
 
     const [guess, setGuess] = React.useState();
     const [typedInput, setTypedInput] = React.useState('');
+    const [result, setResult] = React.useState('');
 
     return (
         <>
@@ -21,6 +22,8 @@ function InputGuess({
                 setWarnMessage(CheckForValidGuess(typedInput));
                 setResult(CompareGuess(fourDigitNumber, typedInput));
             }}>Submit</button>
+
+            <Result  result={result}/>
         </>
     )
 }

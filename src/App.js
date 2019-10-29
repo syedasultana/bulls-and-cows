@@ -8,7 +8,6 @@ import InputGuess from './components/InputGuess';
 function App() {
 
   const [fourDigitNumber, setFourDigitNumber] = React.useState(/*GenerateRandomNo()*/);
-  const [result, setResult] = React.useState('');
   const [warnMessage, setWarnMessage] = React.useState('')
 
   return (
@@ -21,12 +20,10 @@ function App() {
       <InputGuess
         
         setWarnMessage={setWarnMessage}
-        setResult={setResult}
         fourDigitNumber={fourDigitNumber}
       />
-      
 
-      <h3>{result}</h3>
+        
       <p>{warnMessage}</p>
 
 
