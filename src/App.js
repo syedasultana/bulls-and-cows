@@ -2,9 +2,11 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 
+import RandomNumber from './components/RandomNumber';
+
 function App() {
 
-  const [fourDigitNumber] = React.useState(GenerateRandomNo());
+  const [fourDigitNumber, setFourDigitNumber] = React.useState(/*GenerateRandomNo()*/);
   const [guess, setGuess] = React.useState();
   const [typedInput, setTypedInput] = React.useState('');
   const [result, setResult] = React.useState('');
@@ -12,7 +14,10 @@ function App() {
 
   return (
     <div className="App">
-      <h3>{fourDigitNumber}</h3>
+      <RandomNumber 
+        fourDigitNumber={fourDigitNumber} 
+        setFourDigitNumber={setFourDigitNumber}   
+      /> 
 
       <input
         onChange={event => setTypedInput(event.target.value)}
@@ -33,12 +38,7 @@ function App() {
   );
 }
 
-function GenerateRandomNo() {
-  //between 1000 and 9999
-  const min = 1000;
-  const max = 9999;
-  return Math.round(Math.random() * (max - min) + min);
-}
+
 
 function CompareGuess(solution, guess) {
   //cows
