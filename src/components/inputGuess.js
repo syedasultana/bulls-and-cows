@@ -3,13 +3,16 @@ import Result from '././Result';
 import Warning from '././Warning';
 
 function InputGuess({ 
-    fourDigitNumber
+    fourDigitNumber,
+    result,
+    setResult
 }){
 
     const [guess, setGuess] = React.useState();
     const [typedInput, setTypedInput] = React.useState('');
-    const [result, setResult] = React.useState('');
+    // const [result, setResult] = React.useState('');
     const [warnMessage, setWarnMessage] = React.useState('')
+    const [showSolution, setShowSolution] = React.useState('')
 
     return (
         <>
@@ -22,6 +25,7 @@ function InputGuess({
                 //console.log(typedInput);
                 setWarnMessage(CheckForValidGuess(typedInput));
                 setResult(CompareGuess(fourDigitNumber, typedInput));
+                setShowSolution()
             }}>Submit</button>
 
             <Result  result={result}/>
@@ -48,8 +52,7 @@ function CheckForValidGuess(userInput) {
     return message
 }
 
-function CompareGuess(solution, guess) {
-    //cows
+function CompareGuess(solution, guess) { 
     //convert guess into an array of digits
     const guessArrayed = guess.toString().split('');
     const solutionArrayed = solution.toString().split('');
@@ -66,6 +69,10 @@ function CompareGuess(solution, guess) {
         }
       }
     }
+
+    if (bulls == 4) {
+      return `YOU GUESSED THE CORRECT NUMBER!🏆 ${solution}`;
+    }
     // console.log('cows: ' + cows);
     // console.log('bulls: ' + bulls);
   
@@ -73,6 +80,8 @@ function CompareGuess(solution, guess) {
   
   
 }
+
+
 
 
 

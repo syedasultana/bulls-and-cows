@@ -7,7 +7,15 @@ import InputGuess from './components/InputGuess';
 
 function App() {
 
-  const [fourDigitNumber, setFourDigitNumber] = React.useState(/*GenerateRandomNo()*/);
+  const [fourDigitNumber, setFourDigitNumber] = React.useState();
+  const [result, setResult] = React.useState('');
+  const [showSolution, setShowSolution] = React.useState(false);
+
+  
+  if (result == 'YOU GUESSED THE CORRECT NUMBER!🏆') {
+    displaySolution();
+  }
+
   
 
   return (
@@ -15,18 +23,31 @@ function App() {
       <RandomNumber 
         fourDigitNumber={fourDigitNumber} 
         setFourDigitNumber={setFourDigitNumber}   
+        showSolution={showSolution}
       /> 
 
       <InputGuess
         fourDigitNumber={fourDigitNumber}
+        result={result}
+        setResult={setResult}
       />
 
+      <h3>{showSolution}</h3>
+      
         
    
 
 
     </div>
   );
+
+  function displaySolution() {
+    console.log('displaySolution is executed');
+    setShowSolution(true);
+    // return (
+    //   <h3>{fourDigitNumber}</h3>
+    // ) 
+  }
 }
 
 
