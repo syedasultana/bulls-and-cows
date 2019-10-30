@@ -4,6 +4,7 @@ import './App.css';
 
 import RandomNumber from './components/RandomNumber';
 import InputGuess from './components/InputGuess';
+import GiveUp from './components/GiveUp';
 
 function App() {
 
@@ -32,6 +33,12 @@ function App() {
         setResult={setResult}
       />
 
+      <GiveUp 
+        fourDigitNumber={fourDigitNumber}
+        result={result}
+        setResult={setResult}
+      />
+
       <h3>{showSolution}</h3>
       
         
@@ -44,9 +51,7 @@ function App() {
   function displaySolution() {
     console.log('displaySolution is executed');
     setShowSolution(true);
-    // return (
-    //   <h3>{fourDigitNumber}</h3>
-    // ) 
+
   }
 }
 
